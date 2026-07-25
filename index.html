@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Showroom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #ffffff;
+    --ink: #0a0a0a;
+    --meta: #8a8a8a;
+    --rule: #e8e8e8;
+    --shelf: #f4f4f4;
+    --gap: 1px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------- masthead ---------- */
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    padding: 18px 16px 14px;
+  }
+
+  .wordmark {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .masthead-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .inventory {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--meta);
+  }
+
+  .sort {
+    margin-top: 12px;
+    display: flex;
+    gap: 18px;
+  }
+
+  .sort button {
+    appearance: none;
+    background: none;
+    border: 0;
+    padding: 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--meta);
+    cursor: pointer;
+  }
+
+  .sort button[aria-pressed="true"] {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .sort button:focus-visible,
+  .card:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+  }
+
+  /* ---------- grid ---------- */
+
+  main {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gap);
+    background: var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  @media (min-width: 720px) {
+    main { grid-template-columns: repeat(3, 1fr); }
+    header { padding: 24px 28px 20px; }
+  }
+
+  @media (min-width: 1100px) {
+    main { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .card {
+    display: block;
+    background: var(--paper);
+    color: inherit;
+    text-decoration: none;
+    padding: 0 0 22px;
+  }
+
+  .frame {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    background: var(--shelf);
+    overflow: hidden;
+  }
+
+  .frame img,
+  .frame video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .frame video {
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  .card:hover .frame video,
+  .card:focus-visible .frame video,
+  .card.playing .frame video {
+    opacity: 1;
+  }
+
+  .frame .placeholder {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--meta);
+    text-transform: uppercase;
+  }
+
+  .tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: var(--paper);
+    padding: 3px 6px;
+  }
+
+  .detail {
+    padding: 12px 12px 0;
+  }
+
+  .sku {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--meta);
+    text-transform: uppercase;
+  }
+
+  .name {
+    margin-top: 5px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  .note {
+    margin-top: 3px;
+    font-size: 12px;
+    color: var(--meta);
+    line-height: 1.35;
+  }
+
+  .stamp {
+    margin-top: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--meta);
+  }
+
+  .card[data-live="false"] .frame { opacity: 0.45; }
+  .card[data-live="false"] .stamp { color: var(--ink); }
+
+  /* ---------- states ---------- */
+
+  .message {
+    grid-column: 1 / -1;
+    background: var(--paper);
+    padding: 64px 20px;
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--meta);
+  }
+
+  footer {
+    padding: 26px 16px 60px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--meta);
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  footer a { color: var(--meta); }
+
+  @media (min-width: 720px) {
+    footer { padding: 32px 28px 80px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .frame video { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="masthead-row">
+    <div class="wordmark">Showroom</div>
+    <div class="inventory" id="inventory">Loading</div>
+  </div>
+  <div class="sort" role="group" aria-label="Sort pieces">
+    <button type="button" data-sort="recent" aria-pressed="true">Latest</button>
+    <button type="button" data-sort="name" aria-pressed="false">A–Z</button>
+  </div>
+</header>
+
+<main id="grid">
+  <p class="message">Loading the rail</p>
+</main>
+
+<footer>
+  <span id="stamp">&nbsp;</span>
+  <a href="https://github.com/jamescamera" id="source">github.com/jamescamera</a>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // Fallback if projects.json hasn't been generated yet.
+  var SEED = [
+    {
+      slug: 'Infinite',
+      name: 'Infinite Camera',
+      note: 'A camera that films the screen filming the screen.',
+      url: 'https://jamescamera.github.io/Infinite/',
+      thumb: '', clip: '', updated: '', archived: false
+    },
+    {
+      slug: '5.5',
+      name: 'Perfect Breath',
+      note: 'An orb that breathes at 5.5 per minute. Follow it.',
+      url: 'https://jamescamera.github.io/5.5/',
+      thumb: '', clip: '', updated: '', archived: false
+    },
+    {
+      slug: 'spiffy',
+      name: 'ILSC · FM',
+      note: 'Fourteen years of listening, plotted and playable.',
+      url: 'https://jamescamera.github.io/spiffy/',
+      thumb: '', clip: '', updated: '', archived: false
+    },
+    {
+      slug: 'hidden-hand',
+      name: 'The Hidden Hand',
+      note: 'Symbols, and how they get read.',
+      url: '',
+      thumb: '', clip: '', updated: '', archived: false
+    }
+  ];
+
+  var grid = document.getElementById('grid');
+  var inventory = document.getElementById('inventory');
+  var stamp = document.getElementById('stamp');
+  var pieces = [];
+  var order = 'recent';
+
+  function monthStamp(iso) {
+    if (!iso) return '';
+    var d = new Date(iso);
+    if (isNaN(d)) return '';
+    var m = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'][d.getMonth()];
+    return m + ' ' + String(d.getFullYear()).slice(2);
+  }
+
+  function sortPieces(list) {
+    var copy = list.slice();
+    if (order === 'name') {
+      copy.sort(function (a, b) { return a.name.localeCompare(b.name); });
+    } else {
+      copy.sort(function (a, b) {
+        return new Date(b.updated || 0) - new Date(a.updated || 0);
+      });
+    }
+    return copy;
+  }
+
+  function render() {
+    var list = sortPieces(pieces);
+    grid.innerHTML = '';
+
+    if (!list.length) {
+      grid.innerHTML = '<p class="message">Nothing on the rail yet. Tag a repo <b>showroom</b> to stock it.</p>';
+      inventory.textContent = '0 pieces';
+      return;
+    }
+
+    list.forEach(function (p) {
+      var card = document.createElement('a');
+      card.className = 'card';
+      card.href = p.url || ('https://github.com/jamescamera/' + p.slug);
+      card.setAttribute('data-live', p.url ? 'true' : 'false');
+
+      var frame = document.createElement('div');
+      frame.className = 'frame';
+
+      if (p.thumb) {
+        var img = document.createElement('img');
+        img.src = p.thumb;
+        img.alt = p.name;
+        img.loading = 'lazy';
+        frame.appendChild(img);
+      } else {
+        var ph = document.createElement('div');
+        ph.className = 'placeholder';
+        ph.textContent = 'Awaiting capture';
+        frame.appendChild(ph);
+      }
+
+      if (p.clip) {
+        var vid = document.createElement('video');
+        vid.src = p.clip;
+        vid.muted = true;
+        vid.loop = true;
+        vid.playsInline = true;
+        vid.preload = 'none';
+        vid.setAttribute('aria-hidden', 'true');
+        frame.appendChild(vid);
+
+        card.addEventListener('mouseenter', function () { vid.play().catch(function () {}); });
+        card.addEventListener('focus', function () { vid.play().catch(function () {}); });
+        card.addEventListener('mouseleave', function () { vid.pause(); });
+        card.addEventListener('blur', function () { vid.pause(); });
+      }
+
+      if (!p.url) {
+        var tag = document.createElement('span');
+        tag.className = 'tag';
+        tag.textContent = 'No live link';
+        frame.appendChild(tag);
+      }
+
+      var detail = document.createElement('div');
+      detail.className = 'detail';
+      detail.innerHTML =
+        '<div class="sku">/' + p.slug + '</div>' +
+        '<div class="name"></div>' +
+        '<div class="note"></div>' +
+        '<div class="stamp"></div>';
+      detail.querySelector('.name').textContent = p.name;
+      detail.querySelector('.note').textContent = p.note || '';
+      detail.querySelector('.stamp').textContent =
+        p.archived ? 'Archived' : (monthStamp(p.updated) ? 'Updated ' + monthStamp(p.updated) : '');
+
+      card.appendChild(frame);
+      card.appendChild(detail);
+      grid.appendChild(card);
+    });
+
+    inventory.textContent = list.length + (list.length === 1 ? ' piece' : ' pieces');
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.sort button'), function (btn) {
+    btn.addEventListener('click', function () {
+      order = btn.getAttribute('data-sort');
+      Array.prototype.forEach.call(document.querySelectorAll('.sort button'), function (b) {
+        b.setAttribute('aria-pressed', String(b === btn));
+      });
+      render();
+    });
+  });
+
+  fetch('projects.json', { cache: 'no-cache' })
+    .then(function (r) {
+      if (!r.ok) throw new Error('no manifest');
+      return r.json();
+    })
+    .then(function (data) {
+      pieces = data.projects || [];
+      if (data.generated) stamp.textContent = 'Stock checked ' + monthStamp(data.generated);
+      render();
+    })
+    .catch(function () {
+      pieces = SEED;
+      stamp.textContent = 'Seed list — manifest not built yet';
+      render();
+    });
+})();
+</script>
+
+</body>
+</html>
