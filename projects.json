@@ -1,0 +1,106 @@
+{
+  "generated": "2026-07-25T11:13:42.676Z",
+  "user": "jamescamera",
+  "projects": [
+    {
+      "slug": "hidden-hand",
+      "name": "Hidden Hand",
+      "note": "masonic influence",
+      "url": "https://jamescamera.github.io/hidden-hand/",
+      "updated": "2026-07-25T10:36:31Z",
+      "archived": false,
+      "thumb": "thumbs/hidden-hand.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "warrant",
+      "name": "Warrant",
+      "note": "",
+      "url": "https://jamescamera.github.io/warrant/",
+      "updated": "2026-07-24T18:29:37Z",
+      "archived": false,
+      "thumb": "thumbs/warrant.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "spiffy",
+      "name": "ILSC · FM",
+      "note": "Spiffs",
+      "url": "https://jamescamera.github.io/spiffy/",
+      "updated": "2026-07-24T17:37:34Z",
+      "archived": false,
+      "thumb": "thumbs/spiffy.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "5.5",
+      "name": "Perfect Breath",
+      "note": "",
+      "url": "https://jamescamera.github.io/5.5/",
+      "updated": "2026-07-18T10:01:12Z",
+      "archived": false,
+      "thumb": "thumbs/5.5.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "shatter",
+      "name": "Shatter",
+      "note": "",
+      "url": "https://jamescamera.github.io/shatter/",
+      "updated": "2026-07-17T21:31:24Z",
+      "archived": false,
+      "thumb": "thumbs/shatter.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "RoboCop-Vision",
+      "name": "RoboCop Vision",
+      "note": "",
+      "url": "https://jamescamera.github.io/RoboCop-Vision/",
+      "updated": "2026-07-17T16:12:09Z",
+      "archived": false,
+      "thumb": "thumbs/RoboCop-Vision.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "gamut-hunt",
+      "name": "Gamut Hunt",
+      "note": "hunt colours outside sRGB spectrum",
+      "url": "https://jamescamera.github.io/gamut-hunt/",
+      "updated": "2026-07-17T15:05:57Z",
+      "archived": false,
+      "thumb": "thumbs/gamut-hunt.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "Infinite",
+      "name": "Infinite Camera",
+      "note": "Recursive camera",
+      "url": "https://jamescamera.github.io/Infinite/",
+      "updated": "2026-07-17T12:50:44Z",
+      "archived": false,
+      "thumb": "thumbs/Infinite.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "Infinite-2",
+      "name": "Infinite 2",
+      "note": "Recursive camera v2",
+      "url": "https://jamescamera.github.io/Infinite-2/",
+      "updated": "2026-07-16T17:01:00Z",
+      "archived": false,
+      "thumb": "thumbs/Infinite-2.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "contact-sheet",
+      "name": "Contact Sheet",
+      "note": "website daily",
+      "url": "https://jamescamera.github.io/contact-sheet/",
+      "updated": "2026-07-16T09:43:27Z",
+      "archived": false,
+      "thumb": "thumbs/contact-sheet.jpg",
+      "clip": ""
+    }
+  ]
+}
