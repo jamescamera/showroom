@@ -6,7 +6,8 @@
  * 3. Saves a still (thumbs/<slug>.jpg) and a 3s hover clip (thumbs/<slug>.mp4).
  * 4. Writes projects.json.
  *
- * No per-repo setup needed. To keep a repo off the rail, add its name to EXCLUDE.
+ * If a capture fails, any existing still/clip on disk is kept rather than
+ * dropped — a bad run can never blank out a card that was working.
  */
 
 import fs from 'node:fs/promises';
@@ -19,6 +20,7 @@ const run = promisify(execFile);
 
 const USER = process.env.GH_USER || 'jamescamera';
 const TOKEN = process.env.GITHUB_TOKEN || '';
+const WANT_CLIPS = process.env.SHOWROOM_CLIPS !== '0';
 
 // Repos to keep off the rail.
 const EXCLUDE = new Set([
@@ -26,16 +28,18 @@ const EXCLUDE = new Set([
   `${USER}.github.io`
 ]);
 
-// Optional: nicer card titles than the repo name.
+// Nicer card titles than the repo name.
 const TITLES = {
   'Infinite': 'Infinite Camera',
   '5.5': 'Perfect Breath',
-  'spiffy': 'ILSC · FM'
+  'spiffy': 'ILSC · FM',
+  'thecrate': 'THE CRATE'
 };
 
 const THUMBS = 'thumbs';
 const MANIFEST = 'projects.json';
 const SHOT = { width: 900, height: 1125 };
+const SETTLE_MS = 2600;
 const CLIP_MS = 3400;
 
 async function fetchRepos() {
@@ -81,52 +85,89 @@ function cardNote(repo) {
   return split ? split[1].trim() : desc;
 }
 
-async function capture(browser, piece) {
-  if (!piece.url) return piece;
+async function exists(file) {
+  try {
+    await fs.access(file);
+    return true;
+  } catch {
+    return false;
+  }
+}
 
+// One browser per site. Slower by a second or so, but a crash on site 3 can no
+// longer take out sites 4 through 12.
+async function capture(piece) {
+  const still = path.join(THUMBS, `${piece.slug}.jpg`);
+  const mp4 = path.join(THUMBS, `${piece.slug}.mp4`);
   const videoDir = path.join(THUMBS, `.raw-${piece.slug}`);
-  const context = await browser.newContext({
-    viewport: SHOT,
-    deviceScaleFactor: 2,
-    permissions: ['camera', 'microphone'],
-    recordVideo: { dir: videoDir, size: SHOT }
+
+  const browser = await chromium.launch({
+    args: [
+      '--use-fake-ui-for-media-stream',
+      '--use-fake-device-for-media-stream',
+      '--disable-dev-shm-usage'
+    ]
   });
 
-  const page = await context.newPage();
-
   try {
-    await page.goto(piece.url, { waitUntil: 'networkidle', timeout: 45000 });
-  } catch {
-    // networkidle never settles on animated pages — carry on.
-  }
+    const context = await browser.newContext({
+      viewport: SHOT,
+      deviceScaleFactor: 2,
+      permissions: ['camera', 'microphone'],
+      ...(WANT_CLIPS ? { recordVideo: { dir: videoDir, size: SHOT } } : {})
+    });
 
-  await page.waitForTimeout(2200);
+    const page = await context.newPage();
 
-  const still = path.join(THUMBS, `${piece.slug}.jpg`);
-  await page.screenshot({ path: still, type: 'jpeg', quality: 80 });
-  piece.thumb = still;
-
-  await page.waitForTimeout(CLIP_MS);
-  await context.close();
-
-  const webm = (await fs.readdir(videoDir)).find(f => f.endsWith('.webm'));
-  if (webm) {
-    const mp4 = path.join(THUMBS, `${piece.slug}.mp4`);
     try {
-      await run('ffmpeg', [
-        '-y', '-i', path.join(videoDir, webm),
-        '-vf', `scale=${SHOT.width}:-2`,
-        '-c:v', 'libx264', '-crf', '30', '-preset', 'veryfast',
-        '-pix_fmt', 'yuv420p', '-movflags', '+faststart', '-an',
-        mp4
-      ]);
-      piece.clip = mp4;
-    } catch (err) {
-      console.warn(`  clip skipped for ${piece.slug}: ${err.message.split('\n')[0]}`);
+      await page.goto(piece.url, { waitUntil: 'domcontentloaded', timeout: 30000 });
+    } catch {
+      // Slow or never-idle page — screenshot whatever rendered anyway.
     }
+
+    await page.waitForTimeout(SETTLE_MS);
+    await page.screenshot({ path: still, type: 'jpeg', quality: 80 });
+    piece.thumb = still;
+
+    if (WANT_CLIPS) await page.waitForTimeout(CLIP_MS);
+    await context.close();
+
+    if (WANT_CLIPS && await exists(videoDir)) {
+      const webm = (await fs.readdir(videoDir)).find(f => f.endsWith('.webm'));
+      if (webm) {
+        try {
+          await run('ffmpeg', [
+            '-y', '-i', path.join(videoDir, webm),
+            '-vf', `scale=${SHOT.width}:-2`,
+            '-c:v', 'libx264', '-crf', '30', '-preset', 'veryfast',
+            '-pix_fmt', 'yuv420p', '-movflags', '+faststart', '-an',
+            mp4
+          ]);
+          piece.clip = mp4;
+        } catch (err) {
+          console.warn(`  clip skipped: ${err.message.split('\n')[0]}`);
+        }
+      }
+    }
+  } finally {
+    await browser.close().catch(() => {});
+    await fs.rm(videoDir, { recursive: true, force: true }).catch(() => {});
   }
 
-  await fs.rm(videoDir, { recursive: true, force: true });
+  return piece;
+}
+
+// Whatever happened, if there's already artwork on disk for this slug, use it.
+async function keepWhatWeHave(piece) {
+  const still = path.join(THUMBS, `${piece.slug}.jpg`);
+  const mp4 = path.join(THUMBS, `${piece.slug}.mp4`);
+
+  if (!piece.thumb && await exists(still)) {
+    piece.thumb = still;
+    console.log('  reusing existing still');
+  }
+  if (!piece.clip && await exists(mp4)) piece.clip = mp4;
+
   return piece;
 }
 
@@ -136,22 +177,19 @@ async function main() {
   const repos = await fetchRepos();
   console.log(`${repos.length} repo(s) with Pages enabled`);
 
-  const browser = await chromium.launch({
-    args: ['--use-fake-ui-for-media-stream', '--use-fake-device-for-media-stream']
-  });
-
   const pieces = [];
+  let shot = 0;
+
   for (const repo of repos) {
-    console.log(`→ ${repo.slug} ${repo.url}`);
+    console.log(`→ ${repo.slug}  ${repo.url}`);
     try {
-      pieces.push(await capture(browser, repo));
+      await capture(repo);
+      shot++;
     } catch (err) {
       console.warn(`  capture failed: ${err.message.split('\n')[0]}`);
-      pieces.push(repo);
     }
+    pieces.push(await keepWhatWeHave(repo));
   }
-
-  await browser.close();
 
   if (!pieces.length) {
     console.log('Nothing found — leaving the existing manifest alone.');
@@ -163,7 +201,8 @@ async function main() {
     JSON.stringify({ generated: new Date().toISOString(), user: USER, projects: pieces }, null, 2)
   );
 
-  console.log(`Wrote ${MANIFEST} with ${pieces.length} piece(s).`);
+  const withArt = pieces.filter(p => p.thumb).length;
+  console.log(`Wrote ${MANIFEST}: ${pieces.length} piece(s), ${withArt} with artwork, ${shot} freshly shot.`);
 }
 
 main().catch(err => {
