@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Showroom · objects</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #fff;
+    color: #111;
+    font-family: 'IBM Plex Mono', monospace;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Export mode: one object, nothing else, transparent. */
+  body.export { background: transparent; }
+  body.export #ui { display: none; }
+  body.export #stageOne { display: block; }
+
+  #stageOne { display: none; }
+
+  header { padding: 24px 16px 4px; text-align: center; }
+  h1 {
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.3em; text-transform: uppercase;
+  }
+  .hint {
+    margin-top: 10px; font-size: 10px; letter-spacing: 0.1em;
+    color: #9a9a9a; text-transform: uppercase;
+  }
+
+  main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px 4px;
+    padding: 26px 10px 80px;
+    max-width: 1500px; margin: 0 auto;
+  }
+  @media (min-width: 700px) { main { grid-template-columns: repeat(4, 1fr); padding: 40px 24px 100px; } }
+  @media (min-width: 1100px) { main { grid-template-columns: repeat(6, 1fr); } }
+
+  .cell { display: flex; flex-direction: column; align-items: center; }
+  .cell canvas { width: 100%; height: auto; display: block; }
+  .cap {
+    margin-top: 8px; font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; text-align: center;
+  }
+  .dl {
+    margin-top: 5px; font-size: 9px; letter-spacing: 0.14em;
+    color: #9a9a9a; text-transform: uppercase; text-decoration: none;
+    border-bottom: 1px solid #eee;
+  }
+  .dl:hover { color: #111; }
+</style>
+</head>
+<body>
+
+<div id="ui">
+  <header>
+    <h1>Objects</h1>
+    <div class="hint">Temporary placeholders · tap PNG to save one</div>
+  </header>
+  <main id="grid"></main>
+</div>
+
+<canvas id="stageOne"></canvas>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var SHELL = 0xe4e0d8;   // warm off-white body
+  var DARK  = 0x2b2b2b;   // detail
+  var ACCENT = 0xc9a227;  // one gold note, used sparingly
+
+  /* ---------- shape library ---------- */
+
+  function mat(color, rough) {
+    return new THREE.MeshStandardMaterial({
+      color: color,
+      roughness: rough === undefined ? 0.5 : rough,
+      metalness: 0.04
+    });
+  }
+
+  function lens(g) {                        // recursion camera
+    for (var i = 0; i < 4; i++) {
+      var r = 1.05 - i * 0.2;
+      var ring = new THREE.Mesh(new THREE.TorusGeometry(r, 0.075, 12, 48), mat(i === 0 ? DARK : SHELL));
+      ring.position.z = -i * 0.28;
+      g.add(ring);
+    }
+    var glass = new THREE.Mesh(new THREE.CircleGeometry(0.42, 40), mat(DARK, 0.2));
+    glass.position.z = -1.05;
+    g.add(glass);
+  }
+
+  function orb(g) {                         // perfect breath
+    g.add(new THREE.Mesh(new THREE.SphereGeometry(0.86, 48, 36), mat(SHELL, 0.35)));
+    var ring = new THREE.Mesh(new THREE.TorusGeometry(1.16, 0.035, 10, 64), mat(DARK));
+    ring.rotation.x = Math.PI / 2.35;
+    g.add(ring);
+  }
+
+  function pads(g) {                        // the crate
+    var slab = new THREE.Mesh(new THREE.BoxGeometry(2, 0.24, 2), mat(SHELL));
+    g.add(slab);
+    for (var x = 0; x < 4; x++) {
+      for (var z = 0; z < 4; z++) {
+        var isLit = (x === 0 && z === 3);
+        var pad = new THREE.Mesh(new THREE.BoxGeometry(0.36, 0.1, 0.36), mat(isLit ? ACCENT : DARK, 0.65));
+        pad.position.set(-0.66 + x * 0.44, 0.17, -0.66 + z * 0.44);
+        g.add(pad);
+      }
+    }
+  }
+
+  function discs(g) {                       // records / music
+    for (var i = 0; i < 3; i++) {
+      var d = new THREE.Mesh(new THREE.CylinderGeometry(0.95 - i * 0.04, 0.95 - i * 0.04, 0.045, 56), mat(i === 1 ? DARK : SHELL));
+      d.position.set(i * 0.16 - 0.16, i * 0.13 - 0.13, i * 0.1 - 0.1);
+      d.rotation.z = 0.04 * i;
+      g.add(d);
+    }
+    var hole = new THREE.Mesh(new THREE.TorusGeometry(0.13, 0.03, 8, 28), mat(ACCENT));
+    hole.rotation.x = Math.PI / 2;
+    hole.position.set(0.16, 0.15, 0.1);
+    g.add(hole);
+  }
+
+  function eye(g) {                         // hidden hand / esoteric
+    var pyr = new THREE.Mesh(new THREE.ConeGeometry(1.05, 1.35, 4), mat(SHELL));
+    pyr.rotation.y = Math.PI / 4;
+    pyr.position.y = -0.1;
+    g.add(pyr);
+    var iris = new THREE.Mesh(new THREE.SphereGeometry(0.24, 30, 22), mat(DARK, 0.3));
+    iris.position.set(0, -0.05, 0.5);
+    g.add(iris);
+    var halo = new THREE.Mesh(new THREE.TorusGeometry(0.4, 0.028, 8, 40), mat(ACCENT));
+    halo.position.set(0, -0.05, 0.5);
+    g.add(halo);
+  }
+
+  function bell(g) {                        // jellyfish
+    var dome = new THREE.Mesh(
+      new THREE.SphereGeometry(0.8, 40, 26, 0, Math.PI * 2, 0, Math.PI / 1.85),
+      mat(SHELL, 0.3)
+    );
+    dome.position.y = 0.35;
+    g.add(dome);
+    for (var i = 0; i < 7; i++) {
+      var a = (i / 7) * Math.PI * 2;
+      var t = new THREE.Mesh(new THREE.CylinderGeometry(0.022, 0.008, 1.15, 8), mat(DARK));
+      t.position.set(Math.cos(a) * 0.5, -0.3, Math.sin(a) * 0.5);
+      t.rotation.z = Math.cos(a) * 0.22;
+      t.rotation.x = -Math.sin(a) * 0.22;
+      g.add(t);
+    }
+  }
+
+  function atlas(g) {                       // map / warrant
+    var sheet = new THREE.Mesh(new THREE.BoxGeometry(1.9, 0.05, 1.35), mat(SHELL));
+    sheet.rotation.z = -0.12;
+    g.add(sheet);
+    var fold = new THREE.Mesh(new THREE.BoxGeometry(0.95, 0.05, 1.35), mat(SHELL, 0.62));
+    fold.position.set(0.62, 0.2, 0);
+    fold.rotation.z = 0.34;
+    g.add(fold);
+    var pin = new THREE.Mesh(new THREE.ConeGeometry(0.11, 0.42, 18), mat(ACCENT));
+    pin.position.set(-0.4, 0.3, 0.2);
+    pin.rotation.x = Math.PI;
+    g.add(pin);
+  }
+
+  function cup(g) {                         // sweepstake / trophy
+    g.add(new THREE.Mesh(new THREE.CylinderGeometry(0.62, 0.72, 0.22, 32), mat(DARK)));
+    var stem = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.13, 0.42, 20), mat(SHELL));
+    stem.position.y = 0.3;
+    g.add(stem);
+    var bowl = new THREE.Mesh(new THREE.SphereGeometry(0.55, 34, 22, 0, Math.PI * 2, 0, Math.PI / 2), mat(ACCENT, 0.35));
+    bowl.position.y = 0.5;
+    bowl.rotation.x = Math.PI;
+    g.add(bowl);
+  }
+
+  /* generic families, chosen by hash so unknown projects still differ */
+
+  function knot(g)  { g.add(new THREE.Mesh(new THREE.TorusKnotGeometry(0.72, 0.2, 120, 20), mat(SHELL, 0.42))); }
+  function icosa(g) { g.add(new THREE.Mesh(new THREE.IcosahedronGeometry(1.02, 0), mat(SHELL, 0.42))); }
+
+  function stack(g) {
+    for (var i = 0; i < 3; i++) {
+      var b = new THREE.Mesh(new THREE.BoxGeometry(1.35 - i * 0.28, 0.3, 1.35 - i * 0.28), mat(i === 1 ? DARK : SHELL));
+      b.position.y = -0.4 + i * 0.36;
+      b.rotation.y = i * 0.34;
+      g.add(b);
+    }
+  }
+
+  function rings(g) {
+    for (var i = 0; i < 3; i++) {
+      var r = new THREE.Mesh(new THREE.TorusGeometry(0.45 + i * 0.28, 0.05, 10, 52), mat(i === 2 ? DARK : SHELL));
+      r.rotation.x = Math.PI / 2 + i * 0.3;
+      r.rotation.y = i * 0.4;
+      g.add(r);
+    }
+  }
+
+  function column(g) {
+    for (var i = 0; i < 4; i++) {
+      var c = new THREE.Mesh(new THREE.CylinderGeometry(0.5 - i * 0.07, 0.55 - i * 0.07, 0.3, 28), mat(i % 2 ? DARK : SHELL));
+      c.position.y = -0.6 + i * 0.34;
+      g.add(c);
+    }
+  }
+
+  var GENERIC = [knot, icosa, stack, rings, column];
+
+  function hash(s) {
+    var h = 0;
+    for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
+    return h;
+  }
+
+  function shapeFor(slug) {
+    var s = String(slug || '').toLowerCase();
+    if (s.indexOf('infinite') > -1 || s.indexOf('camera') > -1) return lens;
+    if (s.indexOf('5.5') > -1 || s.indexOf('breath') > -1) return orb;
+    if (s.indexOf('crate') > -1 || s.indexOf('mpc') > -1) return pads;
+    if (s.indexOf('spiffy') > -1 || s.indexOf('fm') > -1 || s.indexOf('ilsc') > -1) return discs;
+    if (s.indexOf('hand') > -1 || s.indexOf('hidden') > -1) return eye;
+    if (s.indexOf('jelly') > -1) return bell;
+    if (s.indexOf('warrant') > -1 || s.indexOf('atlas') > -1 || s.indexOf('mason') > -1) return atlas;
+    if (s.indexOf('cup') > -1 || s.indexOf('sweep') > -1 || s.indexOf('yoshi') > -1 || s.indexOf('table') > -1) return cup;
+    return GENERIC[hash(s) % GENERIC.length];
+  }
+
+  /* ---------- renderer ---------- */
+
+  function draw(canvas, slug, size, spin) {
+    var renderer = new THREE.WebGLRenderer({
+      canvas: canvas, alpha: true, antialias: true, preserveDrawingBuffer: true
+    });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setSize(size, size, false);
+    renderer.setClearColor(0x000000, 0);
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    if (THREE.sRGBEncoding) renderer.outputEncoding = THREE.sRGBEncoding;
+
+    var scene = new THREE.Scene();
+
+    var camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
+    camera.position.set(2.5, 2.15, 3.5);
+    camera.lookAt(0, -0.05, 0);
+
+    scene.add(new THREE.HemisphereLight(0xffffff, 0xdedad2, 0.72));
+
+    var key = new THREE.DirectionalLight(0xffffff, 1.15);
+    key.position.set(2.6, 4.2, 2.4);
+    key.castShadow = true;
+    key.shadow.mapSize.set(1024, 1024);
+    key.shadow.camera.near = 0.5;
+    key.shadow.camera.far = 14;
+    key.shadow.camera.left = -3;
+    key.shadow.camera.right = 3;
+    key.shadow.camera.top = 3;
+    key.shadow.camera.bottom = -3;
+    key.shadow.radius = 3;
+    scene.add(key);
+
+    var rim = new THREE.DirectionalLight(0xffffff, 0.34);
+    rim.position.set(-3, 1.6, -2.4);
+    scene.add(rim);
+
+    // Contact shadow only — the plane itself stays invisible.
+    var floor = new THREE.Mesh(
+      new THREE.PlaneGeometry(9, 9),
+      new THREE.ShadowMaterial({ opacity: 0.17 })
+    );
+    floor.rotation.x = -Math.PI / 2;
+    floor.position.y = -1.12;
+    floor.receiveShadow = true;
+    scene.add(floor);
+
+    var group = new THREE.Group();
+    shapeFor(slug)(group);
+    group.traverse(function (o) { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+    group.rotation.y = -0.5;
+    scene.add(group);
+
+    renderer.render(scene, camera);
+
+    if (spin) {
+      var t = 0;
+      (function loop() {
+        t += 0.005;
+        group.rotation.y = -0.5 + Math.sin(t) * 0.35;
+        renderer.render(scene, camera);
+        requestAnimationFrame(loop);
+      })();
+    }
+
+    return renderer;
+  }
+
+  /* ---------- export mode: /objects.html?slug=thecrate ---------- */
+
+  var params = new URLSearchParams(location.search);
+  var one = params.get('slug');
+
+  if (one) {
+    document.body.className = 'export';
+    var c = document.getElementById('stageOne');
+    var px = parseInt(params.get('size') || '900', 10);
+    c.style.width = px + 'px';
+    c.style.height = px + 'px';
+    draw(c, one, px, false);
+    document.title = one;
+    return;
+  }
+
+  /* ---------- preview grid ---------- */
+
+  var grid = document.getElementById('grid');
+
+  function cell(slug, name) {
+    var wrap = document.createElement('div');
+    wrap.className = 'cell';
+
+    var canvas = document.createElement('canvas');
+    wrap.appendChild(canvas);
+
+    var cap = document.createElement('div');
+    cap.className = 'cap';
+    cap.textContent = name || slug;
+    wrap.appendChild(cap);
+
+    var dl = document.createElement('a');
+    dl.className = 'dl';
+    dl.textContent = 'PNG';
+    dl.download = slug + '.png';
+    dl.href = '#';
+    wrap.appendChild(dl);
+
+    grid.appendChild(wrap);
+
+    draw(canvas, slug, 420, true);
+    dl.addEventListener('click', function () { dl.href = canvas.toDataURL('image/png'); });
+  }
+
+  fetch('projects.json', { cache: 'no-cache' })
+    .then(function (r) { if (!r.ok) throw new Error('none'); return r.json(); })
+    .then(function (d) {
+      (d.projects || []).forEach(function (p) { cell(p.slug, p.name); });
+    })
+    .catch(function () {
+      ['Infinite', '5.5', 'thecrate', 'spiffy', 'hidden-hand', 'jellyfish', 'warrant', 'yoshi-cup']
+        .forEach(function (s) { cell(s, s); });
+    });
+})();
+</script>
+
+</body>
+</html>
