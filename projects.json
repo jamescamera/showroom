@@ -1,7 +1,17 @@
 {
-  "generated": "2026-07-25T11:13:42.676Z",
+  "generated": "2026-07-26T07:09:50.564Z",
   "user": "jamescamera",
   "projects": [
+    {
+      "slug": "jellyfish",
+      "name": "Jellyfish",
+      "note": "",
+      "url": "https://jamescamera.github.io/jellyfish/",
+      "updated": "2026-07-25T19:24:54Z",
+      "archived": false,
+      "thumb": "",
+      "clip": ""
+    },
     {
       "slug": "hidden-hand",
       "name": "Hidden Hand",
@@ -9,7 +19,7 @@
       "url": "https://jamescamera.github.io/hidden-hand/",
       "updated": "2026-07-25T10:36:31Z",
       "archived": false,
-      "thumb": "thumbs/hidden-hand.jpg",
+      "thumb": "",
       "clip": ""
     },
     {
@@ -19,7 +29,7 @@
       "url": "https://jamescamera.github.io/warrant/",
       "updated": "2026-07-24T18:29:37Z",
       "archived": false,
-      "thumb": "thumbs/warrant.jpg",
+      "thumb": "",
       "clip": ""
     },
     {
@@ -29,7 +39,7 @@
       "url": "https://jamescamera.github.io/spiffy/",
       "updated": "2026-07-24T17:37:34Z",
       "archived": false,
-      "thumb": "thumbs/spiffy.jpg",
+      "thumb": "",
       "clip": ""
     },
     {
@@ -39,7 +49,7 @@
       "url": "https://jamescamera.github.io/5.5/",
       "updated": "2026-07-18T10:01:12Z",
       "archived": false,
-      "thumb": "thumbs/5.5.jpg",
+      "thumb": "",
       "clip": ""
     },
     {
@@ -49,7 +59,7 @@
       "url": "https://jamescamera.github.io/shatter/",
       "updated": "2026-07-17T21:31:24Z",
       "archived": false,
-      "thumb": "thumbs/shatter.jpg",
+      "thumb": "",
       "clip": ""
     },
     {
@@ -59,7 +69,7 @@
       "url": "https://jamescamera.github.io/RoboCop-Vision/",
       "updated": "2026-07-17T16:12:09Z",
       "archived": false,
-      "thumb": "thumbs/RoboCop-Vision.jpg",
+      "thumb": "",
       "clip": ""
     },
     {
@@ -69,7 +79,7 @@
       "url": "https://jamescamera.github.io/gamut-hunt/",
       "updated": "2026-07-17T15:05:57Z",
       "archived": false,
-      "thumb": "thumbs/gamut-hunt.jpg",
+      "thumb": "",
       "clip": ""
     },
     {
@@ -79,7 +89,7 @@
       "url": "https://jamescamera.github.io/Infinite/",
       "updated": "2026-07-17T12:50:44Z",
       "archived": false,
-      "thumb": "thumbs/Infinite.jpg",
+      "thumb": "",
       "clip": ""
     },
     {
@@ -89,7 +99,7 @@
       "url": "https://jamescamera.github.io/Infinite-2/",
       "updated": "2026-07-16T17:01:00Z",
       "archived": false,
-      "thumb": "thumbs/Infinite-2.jpg",
+      "thumb": "",
       "clip": ""
     },
     {
@@ -99,7 +109,7 @@
       "url": "https://jamescamera.github.io/contact-sheet/",
       "updated": "2026-07-16T09:43:27Z",
       "archived": false,
-      "thumb": "thumbs/contact-sheet.jpg",
+      "thumb": "",
       "clip": ""
     }
   ]
