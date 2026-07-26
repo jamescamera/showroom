@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-26T12:17:52.284Z",
+  "generated": "2026-07-26T12:24:46.580Z",
   "user": "jamescamera",
   "projects": [
     {
@@ -50,16 +50,6 @@
       "updated": "2026-07-25T10:36:31Z",
       "archived": false,
       "thumb": "thumbs/hidden-hand.jpg",
-      "clip": ""
-    },
-    {
-      "slug": "warrant",
-      "name": "Warrant",
-      "note": "",
-      "url": "https://jamescamera.github.io/warrant/",
-      "updated": "2026-07-24T18:29:37Z",
-      "archived": false,
-      "thumb": "thumbs/warrant.jpg",
       "clip": ""
     },
     {
@@ -120,16 +110,6 @@
       "updated": "2026-07-16T17:01:00Z",
       "archived": false,
       "thumb": "thumbs/Infinite-2.jpg",
-      "clip": ""
-    },
-    {
-      "slug": "contact-sheet",
-      "name": "Contact Sheet",
-      "note": "website daily",
-      "url": "https://jamescamera.github.io/contact-sheet/",
-      "updated": "2026-07-16T09:43:27Z",
-      "archived": false,
-      "thumb": "thumbs/contact-sheet.jpg",
       "clip": ""
     }
   ]
