@@ -1,13 +1,23 @@
 {
-  "generated": "2026-07-26T08:12:40.695Z",
+  "generated": "2026-07-26T08:38:59.333Z",
   "user": "jamescamera",
   "projects": [
+    {
+      "slug": "resonator",
+      "name": "Resonator",
+      "note": "",
+      "url": "https://jamescamera.github.io/resonator/",
+      "updated": "2026-07-26T08:31:17Z",
+      "archived": false,
+      "thumb": "thumbs/resonator.jpg",
+      "clip": ""
+    },
     {
       "slug": "thecrate",
       "name": "THE CRATE",
       "note": "",
       "url": "https://jamescamera.github.io/thecrate/",
-      "updated": "2026-07-26T08:09:03Z",
+      "updated": "2026-07-26T08:25:59Z",
       "archived": false,
       "thumb": "thumbs/thecrate.jpg",
       "clip": ""
