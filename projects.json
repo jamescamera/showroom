@@ -1,13 +1,23 @@
 {
-  "generated": "2026-07-27T07:58:37.775Z",
+  "generated": "2026-07-27T14:46:04.211Z",
   "user": "jamescamera",
   "projects": [
+    {
+      "slug": "hockneycam",
+      "name": "Hockneycam",
+      "note": "",
+      "url": "https://jamescamera.github.io/hockneycam/",
+      "updated": "2026-07-27T13:38:36Z",
+      "archived": false,
+      "thumb": "thumbs/hockneycam.jpg",
+      "clip": ""
+    },
     {
       "slug": "thecrate",
       "name": "THE CRATE",
       "note": "",
       "url": "https://jamescamera.github.io/thecrate/",
-      "updated": "2026-07-26T20:28:56Z",
+      "updated": "2026-07-27T09:45:21Z",
       "archived": false,
       "thumb": "thumbs/thecrate.jpg",
       "clip": ""
