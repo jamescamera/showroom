@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-27T14:46:04.211Z",
+  "generated": "2026-07-28T06:46:23.261Z",
   "user": "jamescamera",
   "projects": [
     {
@@ -7,9 +7,19 @@
       "name": "Hockneycam",
       "note": "",
       "url": "https://jamescamera.github.io/hockneycam/",
-      "updated": "2026-07-27T13:38:36Z",
+      "updated": "2026-07-28T06:24:11Z",
       "archived": false,
       "thumb": "thumbs/hockneycam.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "lattice",
+      "name": "Lattice",
+      "note": "",
+      "url": "https://jamescamera.github.io/lattice/",
+      "updated": "2026-07-28T05:53:48Z",
+      "archived": false,
+      "thumb": "thumbs/lattice.jpg",
       "clip": ""
     },
     {
@@ -17,7 +27,7 @@
       "name": "THE CRATE",
       "note": "",
       "url": "https://jamescamera.github.io/thecrate/",
-      "updated": "2026-07-27T09:45:21Z",
+      "updated": "2026-07-27T21:09:03Z",
       "archived": false,
       "thumb": "thumbs/thecrate.jpg",
       "clip": ""
