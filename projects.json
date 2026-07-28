@@ -1,7 +1,27 @@
 {
-  "generated": "2026-07-28T06:46:23.261Z",
+  "generated": "2026-07-28T07:29:33.640Z",
   "user": "jamescamera",
   "projects": [
+    {
+      "slug": "eyespy",
+      "name": "Eyespy",
+      "note": "",
+      "url": "https://jamescamera.github.io/eyespy/",
+      "updated": "2026-07-28T07:20:36Z",
+      "archived": false,
+      "thumb": "thumbs/eyespy.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "gamut",
+      "name": "Gamut",
+      "note": "",
+      "url": "https://jamescamera.github.io/gamut/",
+      "updated": "2026-07-28T07:00:27Z",
+      "archived": false,
+      "thumb": "thumbs/gamut.jpg",
+      "clip": ""
+    },
     {
       "slug": "hockneycam",
       "name": "Hockneycam",
