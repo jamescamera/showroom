@@ -1,25 +1,25 @@
 {
-  "generated": "2026-07-28T18:13:57.171Z",
+  "generated": "2026-07-29T06:50:34.348Z",
   "user": "jamescamera",
   "projects": [
     {
-      "slug": "tracer",
-      "name": "Tracer",
+      "slug": "prism",
+      "name": "Prism",
       "note": "",
-      "url": "https://jamescamera.github.io/tracer/",
-      "updated": "2026-07-28T18:08:38Z",
+      "url": "https://jamescamera.github.io/prism/",
+      "updated": "2026-07-28T19:57:23Z",
       "archived": false,
-      "thumb": "thumbs/tracer.jpg",
+      "thumb": "thumbs/prism.jpg",
       "clip": ""
     },
     {
-      "slug": "gamut",
-      "name": "Gamut",
+      "slug": "halo",
+      "name": "Halo",
       "note": "",
-      "url": "https://jamescamera.github.io/gamut/",
-      "updated": "2026-07-28T17:31:03Z",
+      "url": "https://jamescamera.github.io/halo/",
+      "updated": "2026-07-28T19:24:48Z",
       "archived": false,
-      "thumb": "thumbs/gamut.jpg",
+      "thumb": "thumbs/halo.jpg",
       "clip": ""
     },
     {
@@ -27,9 +27,19 @@
       "name": "Lattice",
       "note": "",
       "url": "https://jamescamera.github.io/lattice/",
-      "updated": "2026-07-28T08:24:57Z",
+      "updated": "2026-07-28T19:01:42Z",
       "archived": false,
       "thumb": "thumbs/lattice.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "facet",
+      "name": "Facet",
+      "note": "",
+      "url": "https://jamescamera.github.io/facet/",
+      "updated": "2026-07-28T18:44:28Z",
+      "archived": false,
+      "thumb": "thumbs/facet.jpg",
       "clip": ""
     },
     {
@@ -37,9 +47,29 @@
       "name": "Hockneycam",
       "note": "",
       "url": "https://jamescamera.github.io/hockneycam/",
-      "updated": "2026-07-28T08:24:00Z",
+      "updated": "2026-07-28T18:31:50Z",
       "archived": false,
       "thumb": "thumbs/hockneycam.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "gamut",
+      "name": "Gamut",
+      "note": "",
+      "url": "https://jamescamera.github.io/gamut/",
+      "updated": "2026-07-28T18:31:00Z",
+      "archived": false,
+      "thumb": "thumbs/gamut.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "tracer",
+      "name": "Tracer",
+      "note": "",
+      "url": "https://jamescamera.github.io/tracer/",
+      "updated": "2026-07-28T18:29:08Z",
+      "archived": false,
+      "thumb": "thumbs/tracer.jpg",
       "clip": ""
     },
     {
