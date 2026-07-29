@@ -1,7 +1,27 @@
 {
-  "generated": "2026-07-29T06:50:34.348Z",
+  "generated": "2026-07-29T21:21:29.113Z",
   "user": "jamescamera",
   "projects": [
+    {
+      "slug": "interfernce",
+      "name": "Interfernce",
+      "note": "",
+      "url": "https://jamescamera.github.io/interfernce/",
+      "updated": "2026-07-29T19:28:34Z",
+      "archived": false,
+      "thumb": "thumbs/interfernce.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "yoshicamera",
+      "name": "Yoshicamera",
+      "note": "",
+      "url": "https://jamescamera.github.io/yoshicamera/",
+      "updated": "2026-07-29T17:06:41Z",
+      "archived": false,
+      "thumb": "thumbs/yoshicamera.jpg",
+      "clip": ""
+    },
     {
       "slug": "prism",
       "name": "Prism",
