@@ -1,7 +1,17 @@
 {
-  "generated": "2026-07-31T06:55:27.252Z",
+  "generated": "2026-07-31T07:21:22.975Z",
   "user": "jamescamera",
   "projects": [
+    {
+      "slug": "rain",
+      "name": "Rain",
+      "note": "",
+      "url": "https://jamescamera.github.io/rain/",
+      "updated": "2026-07-31T07:09:39Z",
+      "archived": false,
+      "thumb": "thumbs/rain.jpg",
+      "clip": ""
+    },
     {
       "slug": "ridge",
       "name": "Ridge",
