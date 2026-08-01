@@ -1,7 +1,27 @@
 {
-  "generated": "2026-07-31T08:34:17.284Z",
+  "generated": "2026-08-01T06:46:50.170Z",
   "user": "jamescamera",
   "projects": [
+    {
+      "slug": "yoshicamera",
+      "name": "Yoshicamera",
+      "note": "",
+      "url": "https://jamescamera.github.io/yoshicamera/",
+      "updated": "2026-07-31T20:21:02Z",
+      "archived": false,
+      "thumb": "thumbs/yoshicamera.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "snap",
+      "name": "Snap",
+      "note": "",
+      "url": "https://jamescamera.github.io/snap/",
+      "updated": "2026-07-31T18:07:45Z",
+      "archived": false,
+      "thumb": "thumbs/snap.jpg",
+      "clip": ""
+    },
     {
       "slug": "bluehell",
       "name": "Bluehell",
@@ -80,16 +100,6 @@
       "updated": "2026-07-30T19:04:39Z",
       "archived": false,
       "thumb": "thumbs/litho.jpg",
-      "clip": ""
-    },
-    {
-      "slug": "yoshicamera",
-      "name": "Yoshicamera",
-      "note": "",
-      "url": "https://jamescamera.github.io/yoshicamera/",
-      "updated": "2026-07-30T17:06:13Z",
-      "archived": false,
-      "thumb": "thumbs/yoshicamera.jpg",
       "clip": ""
     },
     {
