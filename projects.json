@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-01T06:46:50.170Z",
+  "generated": "2026-08-02T06:52:35.704Z",
   "user": "jamescamera",
   "projects": [
     {
@@ -7,9 +7,29 @@
       "name": "Yoshicamera",
       "note": "",
       "url": "https://jamescamera.github.io/yoshicamera/",
-      "updated": "2026-07-31T20:21:02Z",
+      "updated": "2026-08-01T21:34:09Z",
       "archived": false,
       "thumb": "thumbs/yoshicamera.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "snapglass",
+      "name": "Snapglass",
+      "note": "",
+      "url": "https://jamescamera.github.io/snapglass/",
+      "updated": "2026-08-01T20:05:48Z",
+      "archived": false,
+      "thumb": "thumbs/snapglass.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "earworm",
+      "name": "Earworm",
+      "note": "",
+      "url": "https://jamescamera.github.io/earworm/",
+      "updated": "2026-08-01T19:16:40Z",
+      "archived": false,
+      "thumb": "thumbs/earworm.jpg",
       "clip": ""
     },
     {
