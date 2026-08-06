@@ -1,7 +1,17 @@
 {
-  "generated": "2026-08-05T06:49:46.775Z",
+  "generated": "2026-08-06T06:53:58.922Z",
   "user": "jamescamera",
   "projects": [
+    {
+      "slug": "weather",
+      "name": "Weather",
+      "note": "",
+      "url": "https://jamescamera.github.io/weather/",
+      "updated": "2026-08-05T08:34:26Z",
+      "archived": false,
+      "thumb": "thumbs/weather.jpg",
+      "clip": ""
+    },
     {
       "slug": "yoshicamera",
       "name": "Yoshicamera",
