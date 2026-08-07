@@ -1,7 +1,47 @@
 {
-  "generated": "2026-08-06T06:53:58.922Z",
+  "generated": "2026-08-07T05:58:07.316Z",
   "user": "jamescamera",
   "projects": [
+    {
+      "slug": "aisling",
+      "name": "Aisling",
+      "note": "",
+      "url": "https://jamescamera.github.io/aisling/",
+      "updated": "2026-08-06T17:26:27Z",
+      "archived": false,
+      "thumb": "thumbs/aisling.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "singasketch",
+      "name": "Singasketch",
+      "note": "",
+      "url": "https://jamescamera.github.io/singasketch/",
+      "updated": "2026-08-06T14:08:50Z",
+      "archived": false,
+      "thumb": "thumbs/singasketch.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "theremin",
+      "name": "Theremin",
+      "note": "",
+      "url": "https://jamescamera.github.io/theremin/",
+      "updated": "2026-08-06T13:31:14Z",
+      "archived": false,
+      "thumb": "thumbs/theremin.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "yoshicamera",
+      "name": "Yoshicamera",
+      "note": "",
+      "url": "https://jamescamera.github.io/yoshicamera/",
+      "updated": "2026-08-06T11:30:16Z",
+      "archived": false,
+      "thumb": "thumbs/yoshicamera.jpg",
+      "clip": ""
+    },
     {
       "slug": "weather",
       "name": "Weather",
@@ -10,16 +50,6 @@
       "updated": "2026-08-05T08:34:26Z",
       "archived": false,
       "thumb": "thumbs/weather.jpg",
-      "clip": ""
-    },
-    {
-      "slug": "yoshicamera",
-      "name": "Yoshicamera",
-      "note": "",
-      "url": "https://jamescamera.github.io/yoshicamera/",
-      "updated": "2026-08-04T18:51:15Z",
-      "archived": false,
-      "thumb": "thumbs/yoshicamera.jpg",
       "clip": ""
     },
     {
