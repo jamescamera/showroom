@@ -1,7 +1,37 @@
 {
-  "generated": "2026-08-10T05:52:54.042Z",
+  "generated": "2026-08-11T05:36:25.959Z",
   "user": "jamescamera",
   "projects": [
+    {
+      "slug": "yoshicamera",
+      "name": "Yoshicamera",
+      "note": "",
+      "url": "https://jamescamera.github.io/yoshicamera/",
+      "updated": "2026-08-10T20:21:16Z",
+      "archived": false,
+      "thumb": "thumbs/yoshicamera.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "fog",
+      "name": "Fog",
+      "note": "",
+      "url": "https://jamescamera.github.io/fog/",
+      "updated": "2026-08-10T12:33:41Z",
+      "archived": false,
+      "thumb": "thumbs/fog.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "aislerun",
+      "name": "Aislerun",
+      "note": "",
+      "url": "https://jamescamera.github.io/aislerun/",
+      "updated": "2026-08-10T09:33:42Z",
+      "archived": false,
+      "thumb": "thumbs/aislerun.jpg",
+      "clip": ""
+    },
     {
       "slug": "aisling",
       "name": "Aisling",
@@ -30,16 +60,6 @@
       "updated": "2026-08-06T13:31:14Z",
       "archived": false,
       "thumb": "thumbs/theremin.jpg",
-      "clip": ""
-    },
-    {
-      "slug": "yoshicamera",
-      "name": "Yoshicamera",
-      "note": "",
-      "url": "https://jamescamera.github.io/yoshicamera/",
-      "updated": "2026-08-06T11:30:16Z",
-      "archived": false,
-      "thumb": "thumbs/yoshicamera.jpg",
       "clip": ""
     },
     {
