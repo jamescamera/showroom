@@ -1,7 +1,17 @@
 {
-  "generated": "2026-08-16T04:58:08.485Z",
+  "generated": "2026-08-17T05:06:59.009Z",
   "user": "jamescamera",
   "projects": [
+    {
+      "slug": "yoshicamera",
+      "name": "Yoshicamera",
+      "note": "",
+      "url": "https://jamescamera.github.io/yoshicamera/",
+      "updated": "2026-08-16T18:04:37Z",
+      "archived": false,
+      "thumb": "thumbs/yoshicamera.jpg",
+      "clip": ""
+    },
     {
       "slug": "theremin",
       "name": "Theremin",
@@ -10,16 +20,6 @@
       "updated": "2026-08-15T21:35:57Z",
       "archived": false,
       "thumb": "thumbs/theremin.jpg",
-      "clip": ""
-    },
-    {
-      "slug": "yoshicamera",
-      "name": "Yoshicamera",
-      "note": "",
-      "url": "https://jamescamera.github.io/yoshicamera/",
-      "updated": "2026-08-15T21:30:47Z",
-      "archived": false,
-      "thumb": "thumbs/yoshicamera.jpg",
       "clip": ""
     },
     {
