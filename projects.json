@@ -1,13 +1,33 @@
 {
-  "generated": "2026-08-18T05:00:32.002Z",
+  "generated": "2026-08-18T19:16:55.911Z",
   "user": "jamescamera",
   "projects": [
+    {
+      "slug": "wikilive",
+      "name": "Wikilive",
+      "note": "",
+      "url": "https://jamescamera.github.io/wikilive/",
+      "updated": "2026-08-18T18:41:20Z",
+      "archived": false,
+      "thumb": "thumbs/wikilive.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "flare",
+      "name": "Flare",
+      "note": "",
+      "url": "https://jamescamera.github.io/flare/",
+      "updated": "2026-08-18T18:40:38Z",
+      "archived": false,
+      "thumb": "thumbs/flare.jpg",
+      "clip": ""
+    },
     {
       "slug": "yoshicamera",
       "name": "Yoshicamera",
       "note": "",
       "url": "https://jamescamera.github.io/yoshicamera/",
-      "updated": "2026-08-17T20:50:45Z",
+      "updated": "2026-08-18T12:04:52Z",
       "archived": false,
       "thumb": "thumbs/yoshicamera.jpg",
       "clip": ""
