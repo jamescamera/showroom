@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-20T05:02:39.567Z",
+  "generated": "2026-08-21T05:03:04.020Z",
   "user": "jamescamera",
   "projects": [
     {
@@ -7,9 +7,19 @@
       "name": "Yoshicamera",
       "note": "",
       "url": "https://jamescamera.github.io/yoshicamera/",
-      "updated": "2026-08-19T09:06:22Z",
+      "updated": "2026-08-20T19:14:05Z",
       "archived": false,
       "thumb": "thumbs/yoshicamera.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "testing",
+      "name": "Testing",
+      "note": "",
+      "url": "https://jamescamera.github.io/testing/",
+      "updated": "2026-08-20T09:54:35Z",
+      "archived": false,
+      "thumb": "thumbs/testing.jpg",
       "clip": ""
     },
     {
