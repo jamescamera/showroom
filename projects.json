@@ -1,13 +1,23 @@
 {
-  "generated": "2026-08-26T05:04:25.590Z",
+  "generated": "2026-08-27T15:25:03.490Z",
   "user": "jamescamera",
   "projects": [
+    {
+      "slug": "splats",
+      "name": "Splats",
+      "note": "",
+      "url": "https://jamescamera.github.io/splats/",
+      "updated": "2026-08-26T19:20:48Z",
+      "archived": false,
+      "thumb": "thumbs/splats.jpg",
+      "clip": ""
+    },
     {
       "slug": "tree",
       "name": "Tree",
       "note": "",
       "url": "https://jamescamera.github.io/tree/",
-      "updated": "2026-08-25T07:08:08Z",
+      "updated": "2026-08-26T07:08:18Z",
       "archived": false,
       "thumb": "thumbs/tree.jpg",
       "clip": ""
