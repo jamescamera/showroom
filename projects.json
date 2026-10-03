@@ -1,13 +1,23 @@
 {
-  "generated": "2026-10-02T10:41:02.678Z",
+  "generated": "2026-10-03T10:01:42.461Z",
   "user": "jamescamera",
   "projects": [
+    {
+      "slug": "downloader",
+      "name": "Downloader",
+      "note": "",
+      "url": "https://jamescamera.github.io/downloader/",
+      "updated": "2026-10-02T14:26:48Z",
+      "archived": false,
+      "thumb": "thumbs/downloader.jpg",
+      "clip": ""
+    },
     {
       "slug": "tree",
       "name": "Tree",
       "note": "",
       "url": "https://jamescamera.github.io/tree/",
-      "updated": "2026-10-01T13:11:50Z",
+      "updated": "2026-10-02T12:32:56Z",
       "archived": false,
       "thumb": "thumbs/tree.jpg",
       "clip": ""
