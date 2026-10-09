@@ -1,13 +1,33 @@
 {
-  "generated": "2026-10-08T11:35:50.107Z",
+  "generated": "2026-10-09T11:29:38.143Z",
   "user": "jamescamera",
   "projects": [
+    {
+      "slug": "yoshicamera",
+      "name": "Yoshicamera",
+      "note": "",
+      "url": "https://jamescamera.github.io/yoshicamera/",
+      "updated": "2026-10-09T10:08:55Z",
+      "archived": false,
+      "thumb": "thumbs/yoshicamera.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "dots",
+      "name": "Dots",
+      "note": "",
+      "url": "https://jamescamera.github.io/dots/",
+      "updated": "2026-10-09T10:08:08Z",
+      "archived": false,
+      "thumb": "thumbs/dots.jpg",
+      "clip": ""
+    },
     {
       "slug": "tree",
       "name": "Tree",
       "note": "",
       "url": "https://jamescamera.github.io/tree/",
-      "updated": "2026-10-07T13:21:07Z",
+      "updated": "2026-10-08T13:27:09Z",
       "archived": false,
       "thumb": "thumbs/tree.jpg",
       "clip": ""
@@ -50,26 +70,6 @@
       "updated": "2026-09-26T16:11:07Z",
       "archived": false,
       "thumb": "thumbs/morph.jpg",
-      "clip": ""
-    },
-    {
-      "slug": "yoshicamera",
-      "name": "Yoshicamera",
-      "note": "",
-      "url": "https://jamescamera.github.io/yoshicamera/",
-      "updated": "2026-09-21T13:11:09Z",
-      "archived": false,
-      "thumb": "thumbs/yoshicamera.jpg",
-      "clip": ""
-    },
-    {
-      "slug": "dots",
-      "name": "Dots",
-      "note": "",
-      "url": "https://jamescamera.github.io/dots/",
-      "updated": "2026-09-05T13:51:18Z",
-      "archived": false,
-      "thumb": "thumbs/dots.jpg",
       "clip": ""
     },
     {
