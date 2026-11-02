@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-01T11:27:17.219Z",
+  "generated": "2026-11-02T12:41:04.443Z",
   "user": "jamescamera",
   "projects": [
     {
@@ -7,9 +7,29 @@
       "name": "Lldashboard",
       "note": "",
       "url": "https://jamescamera.github.io/lldashboard/",
-      "updated": "2026-11-01T09:47:21Z",
+      "updated": "2026-11-02T07:19:41Z",
       "archived": false,
       "thumb": "thumbs/lldashboard.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "receipts",
+      "name": "Receipts",
+      "note": "",
+      "url": "https://jamescamera.github.io/receipts/",
+      "updated": "2026-11-01T18:14:15Z",
+      "archived": false,
+      "thumb": "thumbs/receipts.jpg",
+      "clip": ""
+    },
+    {
+      "slug": "tree",
+      "name": "Tree",
+      "note": "",
+      "url": "https://jamescamera.github.io/tree/",
+      "updated": "2026-11-01T13:20:34Z",
+      "archived": false,
+      "thumb": "thumbs/tree.jpg",
       "clip": ""
     },
     {
@@ -20,16 +40,6 @@
       "updated": "2026-11-01T09:20:25Z",
       "archived": false,
       "thumb": "thumbs/banana.jpg",
-      "clip": ""
-    },
-    {
-      "slug": "tree",
-      "name": "Tree",
-      "note": "",
-      "url": "https://jamescamera.github.io/tree/",
-      "updated": "2026-10-31T12:25:40Z",
-      "archived": false,
-      "thumb": "thumbs/tree.jpg",
       "clip": ""
     },
     {
